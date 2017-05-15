@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '~> 5.0.2'
 
 group :production do
   gem 'pg'
@@ -26,6 +26,7 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap-sass'
 gem 'figaro'
 gem 'devise'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
