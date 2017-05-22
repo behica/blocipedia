@@ -1,6 +1,10 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    if current_user.nil? || current_user.role == 'standard'
+      @wikis = Wiki.where(private: false)
+    else
+      @wikis = Wiki.all
+    end
   end
 
   def show
@@ -16,6 +20,8 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
+    @wiki.user = current_user
     authorize @wiki
     
     if @wiki.save
@@ -36,6 +42,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     authorize @wiki
     
     if @wiki.save

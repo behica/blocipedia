@@ -1,5 +1,5 @@
 class WikiPolicy < ApplicationPolicy
   def destroy?
-    user.role == 'admin'
+    wiki.user = current_user || user.role == 'admin'
   end
 end
