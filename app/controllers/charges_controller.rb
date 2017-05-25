@@ -23,7 +23,6 @@ class ChargesController < ApplicationController
     )
     
     current_user.update(customer_id: customer.id)
-    # current_user.update(subscription_id: id)
     current_user.update(role: 1)
     
     flash[:notice] = "Thank you for upgrading to a premium account, #{current_user.email}!"
