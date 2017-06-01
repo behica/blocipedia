@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :wikis, through: :collaborators
+  has_many :collaborators, dependent: :destroy
+  
   before_save { self.email = email.downcase }
 
   # Include default devise modules. Others available are:

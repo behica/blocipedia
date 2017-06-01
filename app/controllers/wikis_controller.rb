@@ -1,10 +1,6 @@
 class WikisController < ApplicationController
   def index
-    if current_user.nil? || current_user.role == 'standard'
-      @wikis = Wiki.where(private: false)
-    else
-      @wikis = Wiki.all
-    end
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -35,6 +31,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @user = User.all
     authorize @wiki
   end
   
