@@ -2,6 +2,24 @@
 
 <div class="row">
   <div class="col-md-8">
-    <%= render 'form', wiki: @wiki %>
+    <%= form_for @wiki do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki information." %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  
+    <% if current_user.admin? || current_user.premium? %>
+        <%= f.label :private, class: 'checkbox pull-right' do %>
+          <%= f.check_box :private %> Make Wiki Private
+        <% end %>
+    <% end %>
+  </div>
+  <% end %>
   </div>
 </div>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'collaborators/destroy'
 
+  resources :wikis
+
   resources :wikis do
     resources :collaborators, only: [:new, :create, :destroy]
   end
